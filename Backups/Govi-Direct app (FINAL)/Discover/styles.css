@@ -1,0 +1,142 @@
+@layer base {
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  main > :first-child {
+    margin-top: 0 !important;
+  }
+
+  main > :last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+#app-content {
+  transition:
+    opacity 0.25s ease-in-out,
+    transform 0.25s ease-in-out;
+
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#app-content.page-transitioning {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+
+/* ==========================================
+   VERIFIED PRODUCT BADGE
+   ========================================== */
+
+.verified-product-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+
+  padding: 2px 6px;
+
+  border-radius: 999px;
+
+  background: rgba(27, 94, 32, 0.1);
+  color: #1b5e20;
+
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 9px;
+  line-height: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.verified-product-badge .material-symbols-outlined {
+  font-size: 12px;
+  line-height: 12px;
+}
+
+
+/* ==========================================
+   PRODUCT CARD TITLE
+   ========================================== */
+
+.product-card .verified-product-badge {
+  margin-left: 1px;
+}
+
+
+/* ==========================================
+   PRODUCT GRID
+   ========================================== */
+
+#product-grid {
+  align-items: stretch;
+}
+
+.product-card {
+  min-width: 0;
+}
+
+
+/* ==========================================
+   PRODUCT MODAL
+   ========================================== */
+
+#product-modal {
+  overscroll-behavior: contain;
+}
+
+#product-modal-card {
+  overscroll-behavior: contain;
+}
+
+
+/* ==========================================
+   MOBILE ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 640px) {
+  .verified-product-badge {
+    padding: 2px 5px;
+    font-size: 8px;
+    line-height: 12px;
+  }
+
+  .verified-product-badge .material-symbols-outlined {
+    font-size: 11px;
+  }
+}

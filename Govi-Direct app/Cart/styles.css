@@ -1,0 +1,91 @@
+@layer base {
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  main > :first-child {
+    margin-top: 0 !important;
+  }
+  main > :last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Hide scrollbars globally */
+::-webkit-scrollbar {
+  display: none;
+}
+
+#buyerTermsModal {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+#buyerTermsModal.is-open {
+  opacity: 1;
+}
+/* Page Transition Animation */
+#app-content {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#buyerTermsModal {
+  position: fixed !important;
+  inset: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  padding: 24px !important;
+
+  background: transparent !important;
+
+  z-index: 99999 !important;
+}
+
+#buyerTermsModal.hidden {
+  display: none !important;
+}
+
+#buyerTermsModal > div {
+  position: relative !important;
+
+  width: 100% !important;
+  max-width: 512px !important;
+
+  max-height: 80vh !important;
+
+  margin: 0 !important;
+
+  transform: none !important;
+
+  overflow: hidden !important;
+}
+
+.page-transitioning {
+  opacity: 0;
+  transform: translateY(10px);
+}

@@ -1,0 +1,39 @@
+#loading-status-text {
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.status-fade-out {
+  opacity: 0;
+  transform: translateY(2px);
+}
+
+.status-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#app-content {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transitioning {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes loadingSlide {
+  0% {
+    left: 0%;
+    width: 30%;
+  }
+  50% {
+    left: 70%;
+    width: 30%;
+  }
+  100% {
+    left: 0%;
+    width: 30%;
+  }
+}

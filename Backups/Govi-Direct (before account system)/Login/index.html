@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GoviDirect — Login</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1B5E20",
+                        secondary: "#8D6E63",
+                        background: "#F7FAF7",
+                        surface: "#FFFFFF",
+                        text: "#18201A",
+                        muted: "#667168"
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f7faf7;
+            color: #18201a;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(27, 94, 32, 0.08);
+            filter: blur(80px);
+            top: -250px;
+            right: -200px;
+            pointer-events: none;
+        }
+
+        .background-glow-two {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: rgba(141, 110, 99, 0.08);
+            filter: blur(80px);
+            bottom: -220px;
+            left: -180px;
+            pointer-events: none;
+        }
+
+        .login-shell {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 650px;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow:
+                0 30px 80px rgba(27, 94, 32, 0.12),
+                0 8px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .branding-panel {
+            background: linear-gradient(
+                145deg,
+                #1B5E20 0%,
+                #26752c 55%,
+                #164d1a 100%
+            );
+            color: white;
+            padding: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .branding-panel::before {
+            content: "";
+            position: absolute;
+            width: 330px;
+            height: 330px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            right: -130px;
+            bottom: -120px;
+        }
+
+        .branding-panel::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            right: -75px;
+            bottom: -65px;
+        }
+
+        .brand {
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-name {
+            font-size: 42px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .brand-name span {
+            color: #d9eadb;
+            font-weight: 400;
+        }
+
+        .brand-tagline {
+            margin-top: 16px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.78);
+            max-width: 300px;
+        }
+
+        .brand-message {
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-message h2 {
+            margin: 0 0 12px;
+            font-size: 30px;
+            line-height: 1.15;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+
+        .brand-message p {
+            margin: 0;
+            max-width: 360px;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        .form-panel {
+            padding: 48px 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 410px;
+        }
+
+        .mode-switch {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #eef3ef;
+            border-radius: 14px;
+            padding: 4px;
+            margin-bottom: 38px;
+        }
+
+        .mode-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: calc(50% - 4px);
+            height: calc(100% - 8px);
+            background: white;
+            border-radius: 11px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition:
+                transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mode-slider.signup {
+            transform: translateX(100%);
+        }
+
+        .mode-button {
+            position: relative;
+            z-index: 2;
+            border: 0;
+            background: transparent;
+            padding: 11px 10px;
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 650;
+            color: #667168;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .mode-button.active {
+            color: #1B5E20;
+        }
+
+        .form-stage {
+            position: relative;
+            min-height: 390px;
+            overflow: hidden;
+        }
+
+        .form-view {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateX(45px);
+            pointer-events: none;
+            transition:
+                opacity 0.35s ease,
+                transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-view.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .form-view.exit-left {
+            opacity: 0;
+            transform: translateX(-45px);
+        }
+
+        .form-title {
+            font-size: 32px;
+            line-height: 1.1;
+            font-weight: 750;
+            letter-spacing: -1px;
+            margin: 0;
+            color: #18201A;
+        }
+
+        .form-subtitle {
+            margin: 10px 0 30px;
+            color: #667168;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 650;
+            margin-bottom: 8px;
+            color: #344039;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8a958d;
+            pointer-events: none;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #dce4dd;
+            border-radius: 12px;
+            outline: none;
+            padding: 0 15px 0 44px;
+            font-size: 14px;
+            color: #18201A;
+            background: #fbfdfb;
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: #1B5E20;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(27, 94, 32, 0.08);
+        }
+
+        .login-button {
+            width: 100%;
+            height: 52px;
+            border: 0;
+            border-radius: 13px;
+            background: #1B5E20;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 7px;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .login-button:hover {
+            background: #174f1b;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(27, 94, 32, 0.2);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            min-height: 20px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #b42318;
+            text-align: center;
+        }
+
+        .development-box {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .development-icon {
+            width: 68px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            background: #edf5ee;
+            color: #1B5E20;
+            margin-bottom: 24px;
+        }
+
+        .development-title {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 750;
+            letter-spacing: -0.8px;
+        }
+
+        .development-text {
+            max-width: 330px;
+            margin: 12px auto 0;
+            color: #667168;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .demo-hint {
+            margin-top: 25px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #f4f7f4;
+            color: #667168;
+            font-size: 12px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            .login-shell {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                min-height: auto;
+            }
+
+            .branding-panel {
+                padding: 35px;
+                min-height: 270px;
+            }
+
+            .brand-message {
+                margin-top: 45px;
+            }
+
+            .brand-message h2 {
+                font-size: 24px;
+            }
+
+            .brand-tagline {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 38px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-page {
+                padding: 15px;
+            }
+
+            .login-shell {
+                border-radius: 22px;
+            }
+
+            .branding-panel {
+                padding: 30px 25px;
+                min-height: 220px;
+            }
+
+            .brand-name {
+                font-size: 34px;
+            }
+
+            .brand-message {
+                margin-top: 35px;
+            }
+
+            .brand-message h2 {
+                font-size: 21px;
+            }
+
+            .form-panel {
+                padding: 30px 22px;
+            }
+
+            .form-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <div class="background-glow"></div>
+    <div class="background-glow-two"></div>
+
+    <main class="login-shell">
+
+        <!-- LEFT BRANDING PANEL -->
+        <section class="branding-panel">
+
+            <div class="brand">
+                <div class="brand-name">
+                    Govi<span>Direct</span>
+                </div>
+
+                <p class="brand-tagline">
+                    Connecting Farmers, Empowering Communities.
+                </p>
+            </div>
+
+            <div class="brand-message">
+                <h2>
+                    Agriculture,<br>
+                    without the middlemen.
+                </h2>
+
+                <p>
+                    Connect directly with Sri Lankan farmers and discover
+                    fresh products through GoviDirect.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT FORM PANEL -->
+        <section class="form-panel">
+
+            <div class="form-container">
+
+                <!-- LOGIN / SIGN UP SWITCH -->
+                <div class="mode-switch">
+
+                    <div
+                        id="modeSlider"
+                        class="mode-slider"
+                    ></div>
+
+                    <button
+                        id="loginModeBtn"
+                        class="mode-button active"
+                        type="button"
+                    >
+                        Login
+                    </button>
+
+                    <button
+                        id="signupModeBtn"
+                        class="mode-button"
+                        type="button"
+                    >
+                        Sign Up
+                    </button>
+
+                </div>
+
+
+                <div class="form-stage">
+
+                    <!-- LOGIN -->
+                    <div
+                        id="loginView"
+                        class="form-view active"
+                    >
+
+                        <h1 class="form-title">
+                            Welcome back
+                        </h1>
+
+                        <p class="form-subtitle">
+                            Log in to continue to GoviDirect.
+                        </p>
+
+
+                        <form id="loginForm">
+
+                            <div class="input-group">
+
+                                <label
+                                    class="input-label"
+                                    for="username"
+                                >
+                                    Username
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <svg
+                                        class="input-icon"
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path d="M20 21a8 8 0 0 0-16 0"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+
+                                    <input
+                                        id="username"
+                                        class="input-field"
+                                        type="text"
+                                        autocomplete="username"
+                                        placeholder="Enter your username"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label
+                                    class="input-label"
+                                    for="password"
+                                >
+                                    Password
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <svg
+                                        class="input-icon"
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <rect
+                                            x="3"
+                                            y="11"
+                                            width="18"
+                                            height="10"
+                                            rx="2"
+                                        ></rect>
+
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+
+                                    <input
+                                        id="password"
+                                        class="input-field"
+                                        type="password"
+                                        autocomplete="current-password"
+                                        placeholder="Enter your password"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="login-button"
+                            >
+                                Log In
+                            </button>
+
+                            <div
+                                id="loginError"
+                                class="error-message"
+                            ></div>
+
+                        </form>
+
+
+                        <div class="demo-hint">
+                            Alpha demo — predefined accounts only.
+                        </div>
+
+                    </div>
+
+
+                    <!-- SIGN UP -->
+                    <div
+                        id="signupView"
+                        class="form-view"
+                    >
+
+                        <div class="development-box">
+
+                            <div class="development-icon">
+
+                                <svg
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                >
+                                    <path d="M12 2v20"></path>
+                                    <path d="M2 12h20"></path>
+                                    <path d="M4.9 4.9l14.2 14.2"></path>
+                                    <path d="M19.1 4.9L4.9 19.1"></path>
+                                </svg>
+
+                            </div>
+
+                            <h2 class="development-title">
+                                In development...
+                            </h2>
+
+                            <p class="development-text">
+                                You can only log into predefined accounts
+                                at this alpha stage of development.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

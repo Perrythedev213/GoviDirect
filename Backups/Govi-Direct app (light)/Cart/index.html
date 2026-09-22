@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="shell-type" content="mobile_tab">
+  <title>GoviDirect - Cart</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Tailwind CDN & Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface": "#111c2d",
+            "surface-tint": "#2a6b2c",
+            "tertiary-fixed-dim": "#e4beb2",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#d8e3fb",
+            "surface-container-lowest": "#ffffff",
+            "primary": "#00450d",
+            "error": "#ba1a1a",
+            "primary-fixed": "#acf4a4",
+            "inverse-primary": "#91d78a",
+            "outline": "#717a6d",
+            "on-secondary-fixed": "#2a1800",
+            "on-secondary": "#ffffff",
+            "surface-dim": "#cfdaf2",
+            "on-surface-variant": "#41493e",
+            "on-error-container": "#93000a",
+            "surface-variant": "#d8e3fb",
+            "tertiary-fixed": "#ffdbce",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#fcab28",
+            "surface-container-low": "#f0f3ff",
+            "on-primary-fixed": "#002203",
+            "surface-container": "#e7eeff",
+            "on-tertiary-container": "#e2bdb0",
+            "surface-bright": "#f9f9ff",
+            "on-error": "#ffffff",
+            "primary-container": "#1b5e20",
+            "secondary-fixed-dim": "#ffb957",
+            "surface-container-high": "#dee8ff",
+            "secondary-fixed": "#ffddb5",
+            "on-tertiary-fixed-variant": "#5b4137",
+            "primary-fixed-dim": "#91d78a",
+            "on-primary-container": "#90d689",
+            "inverse-surface": "#263143",
+            "on-background": "#111c2d",
+            "secondary": "#835400",
+            "outline-variant": "#c0c9bb",
+            "on-secondary-container": "#694300",
+            "inverse-on-surface": "#ecf1ff",
+            "background": "#f9f9ff",
+            "on-tertiary-fixed": "#2b160f",
+            "on-primary-fixed-variant": "#0c5216",
+            "tertiary-container": "#674b41",
+            "surface": "#f9f9ff",
+            "on-secondary-fixed-variant": "#643f00",
+            "tertiary": "#4d352b"
+          },
+
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+
+          spacing: {
+            "margin-sm": "0.75rem",
+            "margin-lg": "2rem",
+            "margin-md": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter-sm": "0.75rem",
+            "margin": "1rem",
+            "space-xl": "2.5rem",
+            "gutter": "1rem",
+            "gutter-lg": "1.5rem",
+            "space-lg": "1.5rem"
+          },
+
+          fontFamily: {
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"]
+          },
+
+          fontSize: {
+            "label-sm": [
+              "11px",
+              {
+                "lineHeight": "14px",
+                "letterSpacing": "0.04em",
+                "fontWeight": "700"
+              }
+            ],
+
+            "headline-md": [
+              "22px",
+              {
+                "lineHeight": "28px",
+                "fontWeight": "600"
+              }
+            ],
+
+            "body-sm": [
+              "12px",
+              {
+                "lineHeight": "16px",
+                "fontWeight": "400"
+              }
+            ],
+
+            "headline-sm": [
+              "18px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "600"
+              }
+            ],
+
+            "body-md": [
+              "14px",
+              {
+                "lineHeight": "20px",
+                "fontWeight": "400"
+              }
+            ],
+
+            "display-lg": [
+              "40px",
+              {
+                "lineHeight": "48px",
+                "letterSpacing": "-0.02em",
+                "fontWeight": "700"
+              }
+            ],
+
+            "display-lg-mobile": [
+              "32px",
+              {
+                "lineHeight": "40px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "700"
+              }
+            ],
+
+            "label-md": [
+              "12px",
+              {
+                "lineHeight": "16px",
+                "letterSpacing": "0.02em",
+                "fontWeight": "600"
+              }
+            ],
+
+            "body-lg": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "400"
+              }
+            ],
+
+            "label-lg": [
+              "14px",
+              {
+                "lineHeight": "20px",
+                "letterSpacing": "0.01em",
+                "fontWeight": "600"
+              }
+            ],
+
+            "headline-lg": [
+              "28px",
+              {
+                "lineHeight": "36px",
+                "letterSpacing": "-0.01em",
+                "fontWeight": "700"
+              }
+            ]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    #buyerTermsModal {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 99999 !important;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    #buyerTermsModal.is-open {
+      opacity: 1;
+    }
+
+    #buyerTermsModal > #buyerTermsBackdrop {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    #buyerTermsModal > div:last-child {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 1rem !important;
+    }
+  </style>
+</head>
+
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary selection:text-on-primary">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]">
+    <div class="h-16 px-margin flex items-center justify-between">
+
+      <div class="flex items-center gap-space-sm">
+        <span class="font-headline-sm text-headline-sm text-primary-container font-bold tracking-tight">
+          GoviDirect
+        </span>
+
+        <span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+          <span class="material-symbols-outlined text-[14px] text-primary-container">
+            location_on
+          </span>
+          Colombo
+        </span>
+      </div>
+
+      <div class="flex items-center gap-space-sm">
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-primary text-[18px]">
+            person
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- Main Content -->
+  <main
+    id="app-content"
+    class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"
+  >
+
+    <div class="flex flex-col w-full px-margin pb-space-lg space-y-space-md">
+
+      <!-- Cart Header Summary -->
+      <div class="flex items-center justify-between pt-space-xs">
+
+        <div>
+          <h1 class="font-headline-md text-headline-md text-on-surface">
+            Harvest Basket
+          </h1>
+
+          <p
+            id="cartHeaderCount"
+            class="font-body-sm text-body-sm text-on-surface-variant"
+          >
+            Farm-direct items ready for dispatch
+          </p>
+        </div>
+
+        <span
+          id="badgeCount"
+          class="px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md"
+        >
+          Active Cart
+        </span>
+
+      </div>
+
+
+      <!-- Empty State -->
+      <div
+        id="empty-cart-state"
+        class="hidden text-center py-12 bg-surface-container-low rounded-2xl p-space-lg"
+      >
+
+        <span class="material-symbols-outlined text-[64px] text-on-surface-variant mb-4">
+          shopping_bag
+        </span>
+
+        <h2 class="font-headline-md text-on-surface">
+          Your cart is empty
+        </h2>
+
+        <p class="font-body-md text-on-surface-variant mt-1 mb-6">
+          Explore local harvests and add fresh items to your cart.
+        </p>
+
+        <a
+          href="../Discover/index.html"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-primary-container text-on-primary font-label-lg shadow-sm"
+        >
+          Browse Discover
+        </a>
+
+      </div>
+
+
+      <!-- Cart Content Wrapper -->
+      <div
+        id="cart-content-wrapper"
+        class="space-y-space-md"
+      >
+
+        <!-- Cart Items -->
+        <div
+          id="cart-items-container"
+          class="space-y-space-sm"
+        ></div>
+
+
+        <!-- Support Our Mission Donation Card -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+
+          <div class="flex items-center gap-space-xs text-secondary">
+            <span
+              class="material-symbols-outlined text-[20px]"
+              style="font-variation-settings: 'FILL' 1;"
+            >
+              volunteer_activism
+            </span>
+
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">
+              Support Our Mission
+            </h3>
+          </div>
+
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Sponsor our movement to provide a sustainable income for farming families across Sri Lanka
+          </p>
+
+
+          <!-- Donation Pills -->
+          <div class="grid grid-cols-4 gap-space-xs pt-space-xs">
+
+            <button
+              class="donation-btn py-2 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md transition-all active:scale-95 text-center"
+              data-amount="100"
+              type="button"
+            >
+              Rs. 100
+            </button>
+
+            <button
+              class="donation-btn active-btn py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-all active:scale-95 text-center"
+              data-amount="250"
+              type="button"
+            >
+              Rs. 250
+            </button>
+
+            <button
+              class="donation-btn py-2 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md transition-all active:scale-95 text-center"
+              data-amount="500"
+              type="button"
+            >
+              Rs. 500
+            </button>
+
+            <button
+              class="donation-btn py-2 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md transition-all active:scale-95 text-center"
+              data-amount="custom"
+              type="button"
+            >
+              Custom
+            </button>
+
+          </div>
+
+
+          <!-- Custom Donation Input -->
+          <div
+            id="customDonationContainer"
+            class="hidden pt-space-xs transition-all duration-300"
+          >
+
+            <div class="relative flex items-center">
+
+              <span class="absolute left-3 font-label-lg text-label-lg text-on-surface-variant font-bold">
+                Rs.
+              </span>
+
+              <input
+                type="number"
+                id="customDonationInput"
+                min="1"
+                placeholder="Enter custom amount"
+                class="w-full bg-surface-container-low text-on-surface font-headline-sm text-headline-sm rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- Donation Toggle -->
+          <label class="flex items-start gap-space-sm pt-space-xs cursor-pointer select-none">
+
+            <input
+              class="mt-0.5 w-5 h-5 rounded text-primary-container accent-primary-container cursor-pointer"
+              id="donationToggle"
+              type="checkbox"
+            >
+
+            <span class="font-body-sm text-body-sm text-on-surface">
+              Add donation to this order to help sponsor digital scales & eco-crates for local farmers
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- Mission Card -->
+        <div class="bg-surface-container-low rounded-xl p-space-md shadow-sm space-y-space-xs">
+
+          <div class="flex items-center gap-space-xs text-primary-container">
+
+            <span
+              class="material-symbols-outlined text-[20px]"
+              style="font-variation-settings: 'FILL' 1;"
+            >
+              spa
+            </span>
+
+            <h3 class="font-headline-sm text-headline-sm text-on-surface">
+              Our Cause & Mission
+            </h3>
+
+          </div>
+
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            GoviDirect exists to empower Sri Lanka's rural farming communities. By connecting smallholders directly with consumers, we eliminate exploitative middlemen and ensure farmers receive fair, dignified earnings for their hard work while providing families with fresh, chemical-free food.
+          </p>
+
+        </div>
+
+
+        <!-- Price Breakdown Card -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+
+          <div class="flex justify-between items-center font-body-md text-body-md text-on-surface-variant">
+
+            <span id="subtotalLabelDesc">
+              Subtotal
+            </span>
+
+            <span
+              id="cart-subtotal"
+              class="text-on-surface font-label-lg text-label-lg"
+            >
+              Rs. 0.00
+            </span>
+
+          </div>
+
+
+          <div class="flex justify-between items-center font-body-md text-body-md text-on-surface-variant">
+
+            <span>
+              Direct Farm Dispatch
+            </span>
+
+            <span class="text-on-surface font-label-lg text-label-lg">
+              Rs. 350.00
+            </span>
+
+          </div>
+
+
+          <div
+            class="flex justify-between items-center font-body-md text-body-md text-secondary hidden"
+            id="donationRow"
+          >
+
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">
+                favorite
+              </span>
+              GoviDirect Donation
+            </span>
+
+            <span
+              class="font-label-lg text-label-lg"
+              id="donationAmountLabel"
+            >
+              Rs. 250.00
+            </span>
+
+          </div>
+
+
+          <div class="pt-space-xs flex justify-between items-center border-t border-outline-variant/30 pt-3">
+
+            <div>
+
+              <p class="font-headline-md text-headline-md text-on-surface font-bold">
+                Total Amount
+              </p>
+
+              <p class="font-body-sm text-body-sm text-on-surface-variant">
+                Tax and logistics included
+              </p>
+
+            </div>
+
+            <p
+              class="font-headline-lg text-headline-lg text-primary-container font-bold"
+              id="cart-total"
+            >
+              Rs. 0.00
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Checkout Agreement -->
+        <div class="pt-space-xs space-y-3">
+
+          <p class="text-center font-body-sm text-body-sm text-on-surface-variant leading-relaxed px-2">
+            By proceeding to checkout, you agree to GoviDirect's
+
+            <button
+              type="button"
+              id="buyerTermsLink"
+              class="text-primary-container font-semibold underline underline-offset-2 hover:text-primary"
+            >
+              Terms & Services
+            </button>
+
+            for buyers.
+          </p>
+
+
+          <!-- Checkout Button -->
+          <button
+            id="checkoutBtn"
+            class="w-full max-w-md mx-auto bg-primary-container hover:bg-primary text-on-primary h-12 rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow-md transition-all active:scale-[0.98]"
+            type="button"
+          >
+
+            <span>
+              Proceed to Checkout
+            </span>
+
+            <span class="material-symbols-outlined text-[20px]">
+              arrow_forward
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- BUYER TERMS & SERVICES MODAL -->
+    <div
+      id="buyerTermsModal"
+      class="fixed inset-0 z-[99999] hidden w-screen h-screen"
+      aria-hidden="true"
+    >
+
+      <!-- Backdrop -->
+      <div
+        id="buyerTermsBackdrop"
+        class="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm"
+      ></div>
+
+
+      <!-- Modal Positioning -->
+      <div
+        class="absolute inset-0 w-screen h-screen flex items-center justify-center p-4"
+      >
+
+        <!-- Modal Box -->
+        <div
+          class="relative flex w-full max-w-lg h-[80vh] max-h-[80vh] flex-col overflow-hidden rounded-2xl bg-surface-container-lowest shadow-2xl"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="buyerTermsTitle"
+        >
+
+          <!-- HEADER -->
+          <div class="flex shrink-0 items-center justify-between border-b border-outline-variant/30 px-5 py-4">
+
+            <h2
+              id="buyerTermsTitle"
+              class="text-lg font-bold text-on-surface"
+            >
+              Buyer Terms & Services
+            </h2>
+
+            <button
+              type="button"
+              id="closeBuyerTermsBtn"
+              class="flex h-9 w-9 items-center justify-center rounded-full hover:bg-surface-container"
+              aria-label="Close buyer terms"
+            >
+              <span class="material-symbols-outlined">
+                close
+              </span>
+            </button>
+
+          </div>
+
+
+          <!-- CONTENT -->
+          <div class="min-h-0 flex-1 overflow-y-auto px-5 py-5">
+
+            <div class="space-y-5">
+
+              <section>
+                <h3 class="mb-1.5 font-bold text-on-surface">
+                  1. GoviDirect as a Marketplace
+                </h3>
+
+                <p class="text-sm leading-6 text-on-surface-variant">
+                  GoviDirect provides a marketplace connecting buyers with farmers and sellers.
+                  GoviDirect acts as a platform and medium for transactions and does not directly
+                  manufacture, grow, or supply products listed by independent sellers.
+                </p>
+              </section>
+
+
+              <section>
+                <h3 class="mb-1.5 font-bold text-on-surface">
+                  2. Products & Seller Responsibility
+                </h3>
+
+                <p class="text-sm leading-6 text-on-surface-variant">
+                  Products are supplied by independent farmers and sellers.
+                  GoviDirect is not responsible for losses, damages, illness, injury,
+                  health effects, financial losses, or other consequences arising from
+                  a seller's products or actions.
+                </p>
+              </section>
+
+
+              <section>
+                <h3 class="mb-1.5 font-bold text-on-surface">
+                  3. Platform Revenue
+                </h3>
+
+                <p class="text-sm leading-6 text-on-surface-variant">
+                  GoviDirect retains 4% of the applicable transaction value as platform
+                  revenue for providing and maintaining the marketplace and its services.
+                </p>
+              </section>
+
+
+              <section>
+                <h3 class="mb-1.5 font-bold text-on-surface">
+                  4. Respectful Conduct
+                </h3>
+
+                <p class="text-sm leading-6 text-on-surface-variant">
+                  You agree to communicate respectfully with GoviDirect staff, farmers,
+                  sellers, and other users. Abusive, threatening, discriminatory, or
+                  inappropriate language and behaviour are not permitted.
+                </p>
+              </section>
+
+
+              <section>
+                <h3 class="mb-1.5 font-bold text-on-surface">
+                  5. Data & Privacy
+                </h3>
+
+                <p class="text-sm leading-6 text-on-surface-variant">
+                  You consent to GoviDirect collecting, storing, and processing information
+                  generated through your use of the platform, including transaction,
+                  communication, account, and platform activity data, for operating and
+                  improving GoviDirect's services.
+                </p>
+              </section>
+
+
+              <!-- Confirmation -->
+              <div class="rounded-xl bg-primary-container/10 p-4">
+                <p class="text-sm leading-6 font-semibold text-on-surface">
+                  By proceeding with checkout, you confirm that you have read,
+                  understood, and agreed to these Buyer Terms & Services.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- FOOTER -->
+          <div class="shrink-0 border-t border-outline-variant/30 px-5 py-4 bg-surface-container-lowest">
+
+            <button
+              type="button"
+              id="buyerTermsDoneBtn"
+              class="w-full rounded-xl bg-primary-container py-3.5 font-bold text-on-primary hover:opacity-90"
+            >
+              I Understand
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- Navigation Bar -->
+  <div class="fixed bottom-3 left-0 right-0 z-50 px-margin pb-safe pointer-events-none">
+
+    <nav class="pointer-events-auto max-w-md mx-auto h-16 px-space-sm rounded-full bg-surface/90 backdrop-blur-xl shadow-lg border border-outline-variant/30 flex justify-around items-center">
+
+      <!-- Discover -->
+      <a
+        href="../Discover/index.html"
+        class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-primary transition-colors"
+      >
+        <span class="material-symbols-outlined text-[24px]">
+          storefront
+        </span>
+
+        <span class="font-label-sm text-label-sm mt-0.5">
+          Discover
+        </span>
+      </a>
+
+
+      <!-- Sell Harvest -->
+      <a
+        href="../Harvest/index.html"
+        class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-primary transition-colors"
+      >
+        <span class="material-symbols-outlined text-[24px]">
+          potted_plant
+        </span>
+
+        <span class="font-label-sm text-label-sm mt-0.5">
+          Sell Harvest
+        </span>
+      </a>
+
+
+      <!-- Cart Active -->
+      <a
+        aria-current="page"
+        href="../Cart/index.html"
+        class="flex flex-col items-center justify-center min-w-[56px] h-12 text-primary-container font-semibold transition-colors"
+      >
+        <span class="material-symbols-outlined text-[24px]">
+          shopping_bag
+        </span>
+
+        <span class="font-label-sm text-label-sm mt-0.5">
+          Cart
+        </span>
+      </a>
+
+
+      <!-- Chat -->
+      <a
+        href="../Chat/index.html"
+        class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-primary transition-colors"
+      >
+        <span class="material-symbols-outlined text-[24px]">
+          chat
+        </span>
+
+        <span class="font-label-sm text-label-sm mt-0.5">
+          Chat
+        </span>
+      </a>
+
+
+      <!-- Orders -->
+      <a
+        href="../Orders/index.html"
+        class="flex flex-col items-center justify-center min-w-[56px] h-12 text-on-surface-variant hover:text-primary transition-colors"
+      >
+        <span class="material-symbols-outlined text-[24px]">
+          inventory_2
+        </span>
+
+        <span class="font-label-sm text-label-sm mt-0.5">
+          Orders
+        </span>
+      </a>
+
+    </nav>
+
+  </div>
+
+
+  <!-- Page Logic -->
+  <script src="script.js"></script>
+  <script src="../notifications.js"></script>
+
+</body>
+</html>
